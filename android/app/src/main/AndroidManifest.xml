@@ -25,7 +25,6 @@
     </queries>
    <application
         android:label="smart_watch_app"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -53,7 +52,7 @@
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />
                <category android:name="android.intent.category.BROWSABLE" />
-               <data android:scheme="partyai" />
+               <data android:scheme="https" android:host="com.example.smart_watch_app" android:pathPattern=".*" />
            </intent-filter>
 
 <!--           <intent-filter android:label="flutter_web_auth">-->

@@ -1,19 +1,16 @@
+import 'dart:io';
+
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:smart_watch_app/HomePage.dart';
-import 'package:smart_watch_app/ModelPage.dart';
+import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:smart_watch_app/main.dart';
 import 'package:uni_links/uni_links.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:simple_url_preview/simple_url_preview.dart';
-import 'Component/Components.dart';
-import 'SignupPage.dart';
-import 'dart:io';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
 
-import 'package:oauth2/oauth2.dart' as oauth2;
+import 'Component/Components.dart';
+import 'HomePage.dart';
+import 'SignupPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -133,23 +130,29 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80),
             BouncingWidget(
               onPressed: () async {
-                final String token = await getToken();
+                // final myval = await myhttpcall(
+                //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json"
+                //     // "https://api.fitbit.com/1/user/-/profile.json"
+                //     );
+                // print(myval);
+                // final String token = await getToken();
 
-                final result = await FlutterWebAuth.authenticate(
-                    url: authorizationEndpoint.toString(),
-                    callbackUrlScheme: "callbackUrlScheme");
+                // final result = await FlutterWebAuth.authenticate(
+                //     url: authorizationEndpoint.toString(),
+                //     callbackUrlScheme: "callbackUrlScheme");
 
-                final tokeen = Uri.parse(result).queryParameters["code"];
-                print("Token: $token");
-                print("Token: $tokeen");
+                // final tokeen = Uri.parse(result).queryParameters["code"];
+                // print("Token: $token");
+                // print("Token: $tokeen");
 
-                print("result: $result");
-                // Future.delayed(const Duration(milliseconds: 000), () async {
-                //   Navigator.of(context).push(MaterialPageRoute(
-                //       builder: (context) => const HomePage()));
-                //   // launch(
-                //   // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
-                //   // await openURL();
+                // print("result: $result");
+                Future.delayed(const Duration(milliseconds: 400), () async {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
+                  // launch(
+                  // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
+                  // await openURL();
+                });
                 // });
               },
               child:
@@ -218,11 +221,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-void showNotification() {
+void showNotification({required String title, required String message}) {
   flutterLocalNotificationsPlugin.show(
       0,
-      "Testing",
-      "your B.P is high",
+      title,
+      message,
       NotificationDetails(
           android: AndroidNotificationDetails(channel.id, channel.name,
               // channel.description,

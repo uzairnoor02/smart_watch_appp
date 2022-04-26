@@ -49,6 +49,8 @@ dependencies:
   flutter_web_auth: ^0.4.1
   http: ^0.13.4
   shared_preferences: ^2.0.13
+  cron: ^0.5.0
+  flutter_background: ^1.1.0
 
 dev_dependencies:
   flutter_test:

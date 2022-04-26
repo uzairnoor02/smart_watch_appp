@@ -1,18 +1,18 @@
 // import 'dart:math';
 
+import 'dart:io';
 // ignore_for_file: camel_case_types
 
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 // import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:smart_watch_app/LoginPage.dart';
 
 import 'Component/Components.dart';
 
@@ -90,6 +90,9 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
         "prescriptionimage": downloadLink ?? "true",
         "description": descriptionController.text
       });
+      showNotification(
+          title: 'Prescription',
+          message: 'Your Prescription is successfully uploaded');
     } catch (e) {
       print(e.toString() + " 00000000000000");
     }
@@ -97,6 +100,7 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
 
   @override
   Widget build(BuildContext context) {
+    bool buttonDisability = false;
     return Scaffold(
       key: formkey,
       backgroundColor: const Color(0xff192442),
@@ -198,44 +202,49 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     GestureDetector(
-                      onTap: () async {
-                        if (description == null) {
-                          return showDialog(
-                              barrierDismissible: true,
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16)),
-                                  title: const Text(
-                                    "Validation",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                  content: const Text(
-                                    "Please write Description",
-                                    style: TextStyle(color: Colors.black54),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text(
-                                          "Okay",
+                      onTap: buttonDisability == false
+                          ? () async {
+                              if (description == null) {
+                                return showDialog(
+                                    barrierDismissible: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
+                                        title: const Text(
+                                          "Validation",
+                                          style: TextStyle(color: Colors.red),
+                                        ),
+                                        content: const Text(
+                                          "Please write Description",
                                           style:
                                               TextStyle(color: Colors.black54),
-                                        )),
-                                  ],
-                                );
-                              });
-                        } else {
-                          setState(() {
-                            _indicatorBar = true;
-                          });
-                          await uploadInfo();
-                          Navigator.pop(context);
-                        }
-                      },
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text(
+                                                "Okay",
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                              )),
+                                        ],
+                                      );
+                                    });
+                              } else {
+                                setState(() {
+                                  buttonDisability = true;
+                                  _indicatorBar = true;
+                                });
+                                await uploadInfo();
+                                Navigator.pop(context);
+                              }
+                            }
+                          : null,
                       child: Container(
                         height: MediaQuery.of(context).size.height / 10,
                         width: MediaQuery.of(context).size.width,

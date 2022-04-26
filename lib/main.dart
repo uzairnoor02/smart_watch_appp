@@ -3,7 +3,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'HomePage.dart';
+// import 'package:workmanager/workmanager.dart';
+
 import 'LoginPage.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -29,11 +30,21 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           channelDescription: channel.description,
         ),
       ));
-  print(
-      "A bg message just showed up : ${message.notification!.title}\n ${message.notification!.body}");
+  // print(
+  //     "A bg message just showed up : ${message.notification!.title}\n ${message.notification!.body}");
 }
 
 Future<void> main() async {
+  // final cron = Cron();
+  // const String day = "*";
+  // const String month = "april";
+  // const String dayOfMonth = "Thursday";
+  // const String hour = "5";
+  // const String min = "5";
+  //
+  // cron.schedule(Schedule.parse("$min $hour $dayOfMonth $month $day"),
+  //     () async => {showNotification()});
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -86,7 +97,7 @@ class _MyAppState extends State<MyApp> {
       }
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print("A new OnMessageOpenedApp event was publish");
+      // print("A new OnMessageOpenedApp event was publish");
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification!.android;
       if (notification != null && android != null) {

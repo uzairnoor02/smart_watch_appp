@@ -51,7 +51,9 @@ android {
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'com.example.smart_watch_app'
+        ]
 
     }
 
@@ -61,6 +63,7 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+
     }
 }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smart_watch_app/LoginPage.dart';
 
 import 'Component/Components.dart';
 
@@ -14,16 +13,16 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showNotification();
-        },
-        child: const Icon(
-          Icons.add,
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // showNotification();
+      //   },
+      //   child: const Icon(
+      //     Icons.add,
+      //     color: Colors.black,
+      //   ),
+      //   backgroundColor: Colors.white,
+      // ),
       backgroundColor: const Color(0xff192442),
       body: SafeArea(
         child: Column(
@@ -47,12 +46,12 @@ class _SettingPageState extends State<SettingPage> {
               logoutDialog: false,
               description: false,
             ),
-            SettingWidget(
-              icon: Icons.password,
-              title: 'Change Password',
-              logoutDialog: false,
-              description: false,
-            ),
+            // SettingWidget(
+            //   icon: Icons.password,
+            //   title: 'Change Password',
+            //   logoutDialog: false,
+            //   description: false,
+            // ),
             SettingWidget(
               icon: Icons.info,
               title: 'Help and Support',
