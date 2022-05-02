@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:bouncing_widget/bouncing_widget.dart';
@@ -7,9 +8,11 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:smart_watch_app/main.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:http/http.dart' as http;
 import 'Component/Components.dart';
 import 'HomePage.dart';
+import 'ModelsAndClasses/InputModels/HeartActivities.dart';
+import 'ModelsAndClasses/httpcall.dart';
 import 'SignupPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +23,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final String url =
       "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
 
@@ -88,9 +93,6 @@ class _LoginPageState extends State<LoginPage> {
         .handleAuthorizationResponse(responseUrl!.queryParameters);
   }
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   openURL() async {
     String url = "https://www.google.com/";
     // final Uri uri = Uri.file(url);
@@ -99,6 +101,20 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       throw "Url not found";
     }
+  }
+
+  getData() async {
+    // Uri uri = Uri.parse(
+    //     );
+
+    var response = myhttpcall(
+        "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
+
+    print(response);
+
+    //
+    // final response = await http.get(uri);
+    // print(response.body + "body");
   }
 
   @override
@@ -130,6 +146,14 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80),
             BouncingWidget(
               onPressed: () async {
+                print("get call started");
+                await getData();
+                // myhttp
+                // call(
+
+                //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
+                print("get call ended");
+
                 // final myval = await myhttpcall(
                 //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json"
                 //     // "https://api.fitbit.com/1/user/-/profile.json"
@@ -146,13 +170,13 @@ class _LoginPageState extends State<LoginPage> {
                 // print("Token: $tokeen");
 
                 // print("result: $result");
-                Future.delayed(const Duration(milliseconds: 400), () async {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
-                  // launch(
-                  // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
-                  // await openURL();
-                });
+                // Future.delayed(const Duration(milliseconds: 400), () async {
+                //   Navigator.of(context).push(MaterialPageRoute(
+                //       builder: (context) => const HomePage()));
+                //   // launch(
+                //   // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
+                //   // await openURL();
+                // });
                 // });
               },
               child:
