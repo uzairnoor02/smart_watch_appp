@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
-import 'InputModels/HeartActivities.dart';
 
 Future<dynamic> myhttpcall(uri) async {
   var headers = {
@@ -13,32 +9,15 @@ Future<dynamic> myhttpcall(uri) async {
   };
   var request = http.Request('GET', Uri.parse(uri));
   request.headers.addAll(headers);
-  http.StreamedResponse response = await request.send();
+  http.StreamedResponse streamedResponse = await request.send();
+
+  var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     print(" in http.dart");
-    print(await response.stream.bytesToString());
-
-    HeartActivities heartActivities = HeartActivities.fromJson(jsonDecode("${{
-      "activities-heart": [
-        {
-          "dateTime": "2022-04-28",
-          "value": {
-            "customHeartRateZones": [],
-            "heartRateZones": [
-              {"max": 98, "min": 30, "name": "Out of Range"},
-              {"max": 137, "min": 98, "name": "Fat Burn"},
-              {"max": 167, "min": 137, "name": "Cardio"},
-              {"max": 220, "min": 167, "name": "Peak"}
-            ]
-          }
-        }
-      ]
-    }}"));
-
-    print(heartActivities.activitiesHeart);
-    print("New value");
+    var a = response.body;
+    print(response.body);
   } else {
     print(response.reasonPhrase);
   }
-  return response;
+  return response.body;
 }
