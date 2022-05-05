@@ -90,9 +90,10 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
         "prescriptionimage": downloadLink ?? "true",
         "description": descriptionController.text
       });
-      showNotification(
-          title: 'Prescription',
-          message: 'Your Prescription is successfully uploaded');
+      // showNotification(
+      //     title: 'Prescription',
+      //     message: 'Your Prescription is successfully uploaded',
+      //     );
     } catch (e) {
       print(e.toString() + " 00000000000000");
     }
@@ -179,26 +180,33 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                       ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    TextFormField(
-                      controller: descriptionController,
-                      style: const TextStyle(color: Colors.white),
-                      maxLines: 3,
-                      onChanged: (value) {
-                        // updateDescription();
-                        description = value.trim();
-                      },
-                      cursorColor: Colors.white,
-                      decoration: InputDecoration(
-                          // border: InputBorder.none,
-                          labelStyle: const TextStyle(color: Colors.white),
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width / 30),
+                      child: TextFormField(
+                        controller: descriptionController,
+                        style: const TextStyle(color: Colors.white),
+                        maxLines: 3,
+                        onChanged: (value) {
+                          // updateDescription();
+                          description = value.trim();
+                        },
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white)),
+                          focusColor: Colors.white,
+                          labelStyle: TextStyle(color: Colors.white),
                           alignLabelWithHint: true,
                           fillColor: Colors.white,
                           labelText: 'Description',
-                          focusedBorder: const OutlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white)),
-                          border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(5.0))),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     GestureDetector(

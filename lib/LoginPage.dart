@@ -8,8 +8,9 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:smart_watch_app/main.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:http/http.dart' as http;
 import 'Component/Components.dart';
+import 'HomePage.dart';
 import 'ModelsAndClasses/InputModels/HeartActivities.dart';
 import 'ModelsAndClasses/httpcall.dart';
 import 'SignupPage.dart';
@@ -109,9 +110,8 @@ class _LoginPageState extends State<LoginPage> {
     var response = myhttpcall(
         "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
 
-    var parsed = json.decode(await response);
-    var heartActivities = HeartActivities.fromJson(parsed);
-    print(heartActivities.activitiesHeart.length);
+    print(response);
+
     //
     // final response = await http.get(uri);
     // print(response.body + "body");
@@ -128,56 +128,63 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoginPageInputField(
-              prefix: Icons.email_outlined,
-              hintText: 'Type Email',
-              labelText: 'Email',
-              emailController: _emailController,
-              hideText: false,
-            ),
-            const SizedBox(height: 30),
-            LoginPageInputField(
-              prefix: Icons.password,
-              hintText: 'Type Password',
-              labelText: 'Password',
-              emailController: _passwordController,
-              hideText: true,
-            ),
-            const SizedBox(height: 80),
+            // LoginPageInputField(
+            //   prefix: Icons.email_outlined,
+            //   hintText: 'Type Email',
+            //   labelText: 'Email',
+            //   emailController: _emailController,
+            //   hideText: false,
+            // ),
+            // const SizedBox(height: 30),
+            // LoginPageInputField(
+            //   prefix: Icons.password,
+            //   hintText: 'Type Password',
+            //   labelText: 'Password',
+            //   emailController: _passwordController,
+            //   hideText: true,
+            // ),
+            // const SizedBox(height: 80),
             BouncingWidget(
               onPressed: () async {
-                print("get call started");
-                await getData();
-                // myhttp
-                // call(
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  // showNotification();
 
-                //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
-                print("get call ended");
-
-                // final myval = await myhttpcall(
-                //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json"
-                //     // "https://api.fitbit.com/1/user/-/profile.json"
-                //     );
-                // print(myval);
-                // final String token = await getToken();
-
-                // final result = await FlutterWebAuth.authenticate(
-                //     url: authorizationEndpoint.toString(),
-                //     callbackUrlScheme: "callbackUrlScheme");
-
-                // final tokeen = Uri.parse(result).queryParameters["code"];
-                // print("Token: $token");
-                // print("Token: $tokeen");
-
-                // print("result: $result");
-                // Future.delayed(const Duration(milliseconds: 400), () async {
-                //   Navigator.of(context).push(MaterialPageRoute(
-                //       builder: (context) => const HomePage()));
-                //   // launch(
-                //   // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
-                //   // await openURL();
-                // });
-                // });
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          const HomePage(payload: "payload")));
+                });
+                // print("get call started");
+                // await getData();
+                // // myhttp
+                // // call(
+                //
+                // //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
+                // print("get call ended");
+                //
+                // // final myval = await myhttpcall(
+                // //     "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json"
+                // //     // "https://api.fitbit.com/1/user/-/profile.json"
+                // //     );
+                // // print(myval);
+                // // final String token = await getToken();
+                //
+                // // final result = await FlutterWebAuth.authenticate(
+                // //     url: authorizationEndpoint.toString(),
+                // //     callbackUrlScheme: "callbackUrlScheme");
+                //
+                // // final tokeen = Uri.parse(result).queryParameters["code"];
+                // // print("Token: $token");
+                // // print("Token: $tokeen");
+                //
+                // // print("result: $result");
+                // // Future.delayed(const Duration(milliseconds: 400), () async {
+                // //   Navigator.of(context).push(MaterialPageRoute(
+                // //       builder: (context) => const HomePage()));
+                // //   // launch(
+                // //   // "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=238GCP&redirect_uri=https%3A%2F%2Ffee5-119-73-124-59.ngrok.io%2Fauth%2Fauthorization&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800");
+                // //   // await openURL();
+                // // });
+                // // });
               },
               child:
                   // Link(
@@ -217,8 +224,9 @@ class _LoginPageState extends State<LoginPage> {
                 Future.delayed(const Duration(milliseconds: 500), () {
                   // showNotification();
 
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignupPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          const HomePage(payload: "payload")));
                 });
               },
               child: Container(

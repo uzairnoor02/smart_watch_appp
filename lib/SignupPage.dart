@@ -38,7 +38,9 @@ class SignupPage extends StatelessWidget {
               onPressed: () {
                 Future.delayed(const Duration(milliseconds: 500), () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const HomePage(
+                            payload: '',
+                          )));
                 });
               },
               child: Container(

@@ -4,7 +4,8 @@ import 'Component/Components.dart';
 import 'SettingPage.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String? payload;
+  const HomePage({Key? key, required this.payload}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,28 +63,28 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text("Battery: ", style: TextStyle(color: Colors.white)),
-                  Text("----", style: TextStyle(color: Colors.white)),
+                  Text("45%", style: TextStyle(color: Colors.white)),
                 ],
               ),
               const SizedBox(height: 40),
               const HomePageCard(
                 icon: "Assets/ShoesIcon.png",
                 title: "Total steps",
-                data: "-----",
+                data: "2265",
                 padding: false,
               ),
               const SizedBox(height: 15),
               const HomePageCard(
                 icon: "Assets/HeartbeatIcon.png",
-                title: "Heart rate",
-                data: "----",
+                title: "Pulse rate",
+                data: "85 to 106",
                 padding: true,
               ),
               const SizedBox(height: 15),
               const HomePageCard(
                 icon: "Assets/CaloriesIcon.png",
                 title: "Calories",
-                data: "-----",
+                data: "302",
                 padding: true,
               ),
             ],

@@ -5,7 +5,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // import 'package:workmanager/workmanager.dart';
 
+import 'LocalNotificationClass.dart';
 import 'LoginPage.dart';
+import 'ScheduleNotification.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   "high_importance_channel",
@@ -118,6 +120,17 @@ class _MyAppState extends State<MyApp> {
             });
       }
     });
+    LocalNotificationApi.init();
+    listenNotification();
+  }
+
+  void listenNotification() {
+    void onClickNotification(String? payload) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const ScheduleNotificationPage()));
+    }
+
+    LocalNotificationApi.onNotification.stream.listen(onClickNotification);
   }
 
   // This widget is the root of your application.
