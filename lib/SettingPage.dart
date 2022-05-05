@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'Component/Components.dart';
+import 'ScheduleNotification.dart';
+import 'SetScheduleNotification.dart';
+import 'UploadDescriptionImagePage.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -13,38 +16,37 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // showNotification();
-      //   },
-      //   child: const Icon(
-      //     Icons.add,
-      //     color: Colors.black,
-      //   ),
-      //   backgroundColor: Colors.white,
-      // ),
       backgroundColor: const Color(0xff192442),
       body: SafeArea(
         child: Column(
-          children: const [
-            SizedBox(height: 100),
+          children: [
+            const SizedBox(height: 100),
             SettingWidget(
               icon: Icons.person,
               title: 'Details',
               logoutDialog: false,
               description: false,
+              onClick: () {},
             ),
             SettingWidget(
               icon: Icons.description_outlined,
               title: "Description",
               logoutDialog: false,
               description: true,
+              onClick: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const uploadDescriptionImage()));
+              },
             ),
             SettingWidget(
-              icon: Icons.tips_and_updates_outlined,
-              title: 'Medical Tip',
+              icon: Icons.notification_add,
+              title: 'Set Reminder Notification',
               logoutDialog: false,
               description: false,
+              onClick: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ScheduleNotificationPage()));
+              },
             ),
             // SettingWidget(
             //   icon: Icons.password,
@@ -57,18 +59,21 @@ class _SettingPageState extends State<SettingPage> {
               title: 'Help and Support',
               logoutDialog: false,
               description: false,
+              onClick: () {},
             ),
             SettingWidget(
               icon: Icons.construction,
               title: 'Term and Conditions',
               logoutDialog: false,
               description: false,
+              onClick: () {},
             ),
             SettingWidget(
               icon: Icons.logout,
               title: 'Log Out',
               logoutDialog: true,
               description: false,
+              onClick: () {},
             ),
           ],
         ),

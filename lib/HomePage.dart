@@ -4,7 +4,8 @@ import 'Component/Components.dart';
 import 'SettingPage.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String? payload;
+  const HomePage({Key? key, required this.payload}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

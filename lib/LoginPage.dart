@@ -8,8 +8,9 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:smart_watch_app/main.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:http/http.dart' as http;
 import 'Component/Components.dart';
+import 'HomePage.dart';
 import 'ModelsAndClasses/InputModels/HeartActivities.dart';
 import 'ModelsAndClasses/httpcall.dart';
 import 'SignupPage.dart';
@@ -109,9 +110,8 @@ class _LoginPageState extends State<LoginPage> {
     var response = myhttpcall(
         "https://api.fitbit.com/1/user/-/activities/heart/date/2022-04-28/1d.json");
 
-    var parsed = json.decode(await response);
-    var heartActivities = HeartActivities.fromJson(parsed);
-    print(heartActivities.activitiesHeart.length);
+    print(response);
+
     //
     // final response = await http.get(uri);
     // print(response.body + "body");

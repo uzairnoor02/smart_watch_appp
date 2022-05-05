@@ -1,7 +1,7 @@
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../DescriptionPage.dart';
+// import '../DescriptionPage.dart';
 
 class LoginPageInputField extends StatefulWidget {
   final TextEditingController _emailController;
@@ -173,12 +173,14 @@ class SettingWidget extends StatelessWidget {
   final String title;
   final bool logoutDialog;
   final bool description;
+  final VoidCallback onClick;
   const SettingWidget({
     Key? key,
     required this.icon,
     required this.title,
     required this.logoutDialog,
     required this.description,
+    required this.onClick,
   }) : super(key: key);
 
   @override
@@ -187,40 +189,41 @@ class SettingWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 15),
         GestureDetector(
-          onTap: () {
-            description == false
-                ? showDialog(
-                    barrierDismissible: true,
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        title: Text(
-                          logoutDialog ? "Logout" : "Data",
-                          style: const TextStyle(color: Colors.black54),
-                        ),
-                        content: Text(
-                          logoutDialog
-                              ? "You want to logout?"
-                              : "------------------------",
-                          style: const TextStyle(color: Colors.black54),
-                        ),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text(
-                                "Okay",
-                                style: TextStyle(color: Colors.black54),
-                              )),
-                        ],
-                      );
-                    })
-                : Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const DescriptionPage()));
-          },
+          onTap: onClick,
+          //     () {
+          //   description == false
+          //       ? showDialog(
+          //           barrierDismissible: true,
+          //           context: context,
+          //           builder: (context) {
+          //             return AlertDialog(
+          //               shape: RoundedRectangleBorder(
+          //                   borderRadius: BorderRadius.circular(16)),
+          //               title: Text(
+          //                 logoutDialog ? "Logout" : "Data",
+          //                 style: const TextStyle(color: Colors.black54),
+          //               ),
+          //               content: Text(
+          //                 logoutDialog
+          //                     ? "You want to logout?"
+          //                     : "------------------------",
+          //                 style: const TextStyle(color: Colors.black54),
+          //               ),
+          //               actions: [
+          //                 TextButton(
+          //                     onPressed: () {
+          //                       Navigator.pop(context);
+          //                     },
+          //                     child: const Text(
+          //                       "Okay",
+          //                       style: TextStyle(color: Colors.black54),
+          //                     )),
+          //               ],
+          //             );
+          //           })
+          //       : Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (context) => const DescriptionPage()));
+          // },
           child: Row(
             children: [
               const SizedBox(width: 15),
@@ -327,6 +330,116 @@ class ImageMessage extends StatelessWidget {
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height / 50),
+        ],
+      ),
+    );
+  }
+}
+
+class HourInputField extends StatefulWidget {
+  final TextEditingController _controller;
+  final String labelText;
+  final String hintText;
+
+  const HourInputField({
+    Key? key,
+    required TextEditingController controller,
+    required this.labelText,
+    required this.hintText,
+  })  : _controller = controller,
+        super(key: key);
+
+  @override
+  State<HourInputField> createState() => _HourInputField();
+}
+
+class _HourInputField extends State<HourInputField> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.15),
+      child: TextFormField(
+        style: const TextStyle(color: Colors.white),
+        controller: widget._controller,
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white)),
+            focusColor: Colors.white,
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white)),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            // prefixIcon: Icon(
+            //   widget.prefix,
+            //   color: Colors.white,
+            // ),
+            labelText: widget.labelText,
+            labelStyle: const TextStyle(color: Colors.white),
+            hintText: widget.hintText,
+            hintStyle: const TextStyle(color: Colors.white)),
+        validator: (value) {
+          if (value!.trim().isEmpty) {
+            return "Required";
+          }
+          return null;
+        },
+        keyboardType: TextInputType.number,
+      ),
+    );
+  }
+}
+
+class ScheduleNotificationCard extends StatelessWidget {
+  final String hour;
+  final String minute;
+  final String description;
+  const ScheduleNotificationCard({
+    Key? key,
+    required this.hour,
+    required this.minute,
+    required this.description,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(20),
+      // height: MediaQuery.of(context).size.height / 6,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: const Color(0xff525355),
+          borderRadius: BorderRadius.circular(15)),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  "Reminder set at: $hour:$minute",
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text(
+                    "Reminder Description: $description",
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
