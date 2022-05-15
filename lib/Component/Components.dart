@@ -1,5 +1,8 @@
 import 'package:bouncing_widget/bouncing_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../NutritionDietImagePage.dart';
 
 // import '../DescriptionPage.dart';
 
@@ -441,6 +444,63 @@ class ScheduleNotificationCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class NutritionDietPageCard extends StatelessWidget {
+  final String image;
+  final String title;
+  final int num;
+  const NutritionDietPageCard({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.num,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => NutritionDietPage(
+                  title: title,
+                  image: image,
+                  num: num,
+                )));
+      },
+      child: Container(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        margin: const EdgeInsets.all(15),
+        height: MediaQuery.of(context).size.height / 2.5,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: const Color(0xff525355),
+        ),
+        child: Stack(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Image.asset(
+                image,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

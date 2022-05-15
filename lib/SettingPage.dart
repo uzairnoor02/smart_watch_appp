@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'Component/Components.dart';
+import 'DetailsPage.dart';
+import 'HealthPredictionPage.dart';
+import 'NutritionDietPage.dart';
 import 'ScheduleNotification.dart';
 import 'SetScheduleNotification.dart';
 import 'UploadDescriptionImagePage.dart';
@@ -26,7 +29,10 @@ class _SettingPageState extends State<SettingPage> {
               title: 'Details',
               logoutDialog: false,
               description: false,
-              onClick: () {},
+              onClick: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const DetailsPage()));
+              },
             ),
             SettingWidget(
               icon: Icons.description_outlined,
@@ -48,25 +54,29 @@ class _SettingPageState extends State<SettingPage> {
                     builder: (context) => const ScheduleNotificationPage()));
               },
             ),
-            // SettingWidget(
-            //   icon: Icons.password,
-            //   title: 'Change Password',
-            //   logoutDialog: false,
-            //   description: false,
-            // ),
             SettingWidget(
-              icon: Icons.info,
-              title: 'Help and Support',
+              icon: Icons.medication_liquid,
+              title: 'Nutrition Diet',
               logoutDialog: false,
               description: false,
-              onClick: () {},
+              onClick: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NutritionDietPage()));
+              },
             ),
             SettingWidget(
-              icon: Icons.construction,
-              title: 'Term and Conditions',
+              icon: Icons.batch_prediction,
+              title: 'Health Prediction',
               logoutDialog: false,
               description: false,
-              onClick: () {},
+              onClick: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HealthPredictionPage()));
+              },
             ),
             SettingWidget(
               icon: Icons.logout,

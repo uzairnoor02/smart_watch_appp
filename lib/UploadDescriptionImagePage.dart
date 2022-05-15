@@ -15,6 +15,7 @@ import 'package:path/path.dart';
 import 'package:smart_watch_app/LoginPage.dart';
 
 import 'Component/Components.dart';
+import 'LocalNotificationClass.dart';
 
 // import 'Components.dart';
 
@@ -90,9 +91,10 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
         "prescriptionimage": downloadLink ?? "true",
         "description": descriptionController.text
       });
-      showNotification(
+      LocalNotificationApi.showNotification(
           title: 'Prescription',
-          message: 'Your Prescription is successfully uploaded');
+          message: 'Your Prescription is successfully uploaded',
+          id: 0);
     } catch (e) {
       print(e.toString() + " 00000000000000");
     }

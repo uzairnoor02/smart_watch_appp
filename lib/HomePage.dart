@@ -1,17 +1,70 @@
 import 'package:flutter/material.dart';
-
+import 'package:smart_watch_app/ModelsAndClasses/httpcall.dart';
 import 'Component/Components.dart';
+import 'ModelsAndClasses/InputModels/HeartActivitiesInputModel.dart';
+import 'ModelsAndClasses/InputModels/StepsInputModel.dart';
+import 'ModelsAndClasses/InputModels/UserInputModel.dart';
 import 'SettingPage.dart';
+// import 'SettingPage.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String? payload;
   const HomePage({Key? key, required this.payload}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _steps = "";
+  String _calories = "";
+  String _displayName = "";
+
+  void getProfile() async {
+    var response =
+        await myhttpcall("https://api.fitbit.com/1/user/-/profile.json");
+    User data = userFromJson(response);
+    setState(() {
+      _displayName = data.user.displayName;
+    });
+  }
+
+  void getSteps() async {
+    var response = await myhttpcall(
+        "https://api.fitbit.com/1/user/-/activities/steps/date/2022-05-14/2022-05-15.json");
+    Steps data = stepsFromJson(response);
+    String val = data.activitiesSteps[1].value;
+    setState(() {
+      _steps = val;
+    });
+  }
+
+  void getHeartActivities() async {
+    var response = await myhttpcall(
+        "https://api.fitbit.com/1/user/-/activities/heart/date/2022-05-14/1d.json");
+    HeartActivities data = heartActivitiesFromJson(response);
+    var a =
+        data.activitiesHeart[0].value!.heartRateZones![0].caloriesOut!.toInt();
+
+    setState(() {
+      _calories = a.toString();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getSteps();
+    getHeartActivities();
+    getProfile();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+//          getSteps();
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const SettingPage()));
         },
@@ -52,10 +105,10 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Device: ", style: TextStyle(color: Colors.white)),
-                  Text("Fitbit versa lite",
-                      style: TextStyle(color: Colors.white)),
+                children: [
+                  const Text("Device: ", style: TextStyle(color: Colors.white)),
+                  Text(_displayName == "" ? "Loading..." : _displayName,
+                      style: const TextStyle(color: Colors.white)),
                 ],
               ),
               const SizedBox(height: 10),
@@ -63,14 +116,14 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text("Battery: ", style: TextStyle(color: Colors.white)),
-                  Text("45%", style: TextStyle(color: Colors.white)),
+                  Text("", style: TextStyle(color: Colors.white)),
                 ],
               ),
               const SizedBox(height: 40),
-              const HomePageCard(
+              HomePageCard(
                 icon: "Assets/ShoesIcon.png",
                 title: "Total steps",
-                data: "2265",
+                data: _steps == "" ? "Loading..." : _steps,
                 padding: false,
               ),
               const SizedBox(height: 15),
@@ -81,16 +134,33 @@ class HomePage extends StatelessWidget {
                 padding: true,
               ),
               const SizedBox(height: 15),
-              const HomePageCard(
+              HomePageCard(
                 icon: "Assets/CaloriesIcon.png",
                 title: "Calories",
-                data: "302",
+                data: _calories == "" ? "Loading..." : _calories,
                 padding: true,
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class StreamBPM {
+  final String value;
+  final String dateTime;
+
+  StreamBPM({
+    required this.value,
+    required this.dateTime,
+  });
+
+  static StreamBPM fromMap(Map<String, dynamic> map) {
+    return StreamBPM(
+      dateTime: map["dateTime"] ?? "",
+      value: map[""],
     );
   }
 }

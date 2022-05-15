@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'Component/Components.dart';
 import 'HomePage.dart';
-import 'ModelsAndClasses/InputModels/HeartActivities.dart';
+// import 'ModelsAndClasses/InputModels/HeartActivities.dart';
 import 'ModelsAndClasses/httpcall.dart';
 import 'SignupPage.dart';
 
@@ -148,10 +148,12 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () async {
                 Future.delayed(const Duration(milliseconds: 500), () {
                   // showNotification();
-
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          const HomePage(payload: "payload")));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => const HomePage(
+                                payload: '',
+                              )));
                 });
                 // print("get call started");
                 // await getData();
