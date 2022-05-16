@@ -132,7 +132,7 @@ class UserClass {
   factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
         age: json["age"],
         ambassador: json["ambassador"],
-        autoStrideEnabled: json["autoStrideEnabled"],
+        autoStrideEnabled: json["autoStrideEnabled"] ?? false,
         avatar: json["avatar"],
         avatar150: json["avatar150"],
         avatar640: json["avatar640"],
@@ -172,7 +172,7 @@ class UserClass {
         strideLengthWalking: json["strideLengthWalking"].toDouble(),
         strideLengthWalkingType: json["strideLengthWalkingType"],
         swimUnit: json["swimUnit"],
-        temperatureUnit: json["temperatureUnit"],
+        temperatureUnit: json["temperatureUnit"] ?? "",
         timezone: json["timezone"],
         topBadges: List<TopBadge>.from(
             json["topBadges"].map((x) => TopBadge.fromJson(x))),
