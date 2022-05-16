@@ -83,37 +83,7 @@ class HomePageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BouncingWidget(
-      onPressed: () {
-        Future.delayed(const Duration(milliseconds: 500), () {
-          showDialog(
-              barrierDismissible: true,
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  title: const Text(
-                    "Data",
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                  content: const Text(
-                    "------------------------",
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          "Okay",
-                          style: TextStyle(color: Colors.black54),
-                        )),
-                  ],
-                );
-              });
-        });
-      },
+      onPressed: () {},
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
         height: MediaQuery.of(context).size.height / 6,

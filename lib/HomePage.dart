@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     var response =
         await myhttpcall("https://api.fitbit.com/1/user/-/profile.json");
     User data = userFromJson(response);
+
     setState(() {
       _displayName = data.user.displayName;
     });
@@ -43,8 +44,7 @@ class _HomePageState extends State<HomePage> {
     var response = await myhttpcall(
         "https://api.fitbit.com/1/user/-/activities/heart/date/2022-05-14/1d.json");
     HeartActivities data = heartActivitiesFromJson(response);
-    var a =
-        data.activitiesHeart[0].value!.heartRateZones![0].caloriesOut!.toInt();
+    var a = data.activitiesHeart[0].value!.heartRateZones![0].caloriesOut!;
 
     setState(() {
       _calories = a.toString();
@@ -105,18 +105,19 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Device: ", style: TextStyle(color: Colors.white)),
-                  Text(_displayName == "" ? "Loading..." : _displayName,
-                      style: const TextStyle(color: Colors.white)),
+                children: const [
+                  Text("Device: ", style: TextStyle(color: Colors.white)),
+                  Text("Fitbit versa lite 2",
+                      style: TextStyle(color: Colors.white)),
                 ],
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Battery: ", style: TextStyle(color: Colors.white)),
-                  Text("", style: TextStyle(color: Colors.white)),
+                children: [
+                  const Text("User: ", style: TextStyle(color: Colors.white)),
+                  Text(_displayName == "" ? "Loading..." : _displayName,
+                      style: const TextStyle(color: Colors.white)),
                 ],
               ),
               const SizedBox(height: 40),

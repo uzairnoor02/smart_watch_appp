@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Component/Components.dart';
+import 'DescriptionPage.dart';
 import 'DetailsPage.dart';
 import 'HealthPredictionPage.dart';
 import 'NutritionDietPage.dart';
@@ -41,7 +42,7 @@ class _SettingPageState extends State<SettingPage> {
               description: true,
               onClick: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const uploadDescriptionImage()));
+                    builder: (context) => const DescriptionPage()));
               },
             ),
             SettingWidget(

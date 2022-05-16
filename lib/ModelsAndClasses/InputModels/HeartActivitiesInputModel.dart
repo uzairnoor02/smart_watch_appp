@@ -84,14 +84,14 @@ class HeartRateZone {
     this.name,
   });
 
-  double? caloriesOut;
+  int? caloriesOut;
   int? max;
   int? min;
   int? minutes;
   String? name;
 
   factory HeartRateZone.fromJson(Map<String, dynamic> json) => HeartRateZone(
-        caloriesOut: json["caloriesOut"].toDouble(),
+        caloriesOut: json["caloriesOut"] ?? 0,
         max: json["max"],
         min: json["min"],
         minutes: json["minutes"],
