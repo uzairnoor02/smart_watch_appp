@@ -12,12 +12,6 @@ Future<dynamic> myhttpcall(uri) async {
   http.StreamedResponse streamedResponse = await request.send();
 
   var response = await http.Response.fromStream(streamedResponse);
-  // if (response.statusCode == 200) {
-  //   print(" in http.dart");
-  //   var a = response.body;
-  //   print(response.body);
-  // } else {
-  //   print(response.reasonPhrase);
-  // }
+
   return response.body;
 }
