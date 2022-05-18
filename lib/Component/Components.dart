@@ -82,60 +82,57 @@ class HomePageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BouncingWidget(
-      onPressed: () {},
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        height: MediaQuery.of(context).size.height / 6,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.black.withOpacity(.2),
-        ),
-        child: Row(
-          children: [
-            Container(
-              margin: EdgeInsets.all(MediaQuery.of(context).size.height / 35),
-              height: MediaQuery.of(context).size.height / 5,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.8),
-                    spreadRadius: 3,
-                    offset: const Offset(0, 0),
-                    blurRadius: 7.0,
-                  )
-                ],
-              ),
-              child: Image.asset(icon),
-            ),
-            SizedBox(
-              width: padding ? 25 : 0,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  data,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+      height: MediaQuery.of(context).size.height / 6,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.black.withOpacity(.2),
+      ),
+      child: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.all(MediaQuery.of(context).size.height / 35),
+            height: MediaQuery.of(context).size.height / 5,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.8),
+                  spreadRadius: 3,
+                  offset: const Offset(0, 0),
+                  blurRadius: 7.0,
+                )
               ],
-            )
-          ],
-        ),
+            ),
+            child: Image.asset(icon),
+          ),
+          SizedBox(
+            width: padding ? 25 : 0,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                data,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -163,48 +160,14 @@ class SettingWidget extends StatelessWidget {
         const SizedBox(height: 15),
         GestureDetector(
           onTap: onClick,
-          //     () {
-          //   description == false
-          //       ? showDialog(
-          //           barrierDismissible: true,
-          //           context: context,
-          //           builder: (context) {
-          //             return AlertDialog(
-          //               shape: RoundedRectangleBorder(
-          //                   borderRadius: BorderRadius.circular(16)),
-          //               title: Text(
-          //                 logoutDialog ? "Logout" : "Data",
-          //                 style: const TextStyle(color: Colors.black54),
-          //               ),
-          //               content: Text(
-          //                 logoutDialog
-          //                     ? "You want to logout?"
-          //                     : "------------------------",
-          //                 style: const TextStyle(color: Colors.black54),
-          //               ),
-          //               actions: [
-          //                 TextButton(
-          //                     onPressed: () {
-          //                       Navigator.pop(context);
-          //                     },
-          //                     child: const Text(
-          //                       "Okay",
-          //                       style: TextStyle(color: Colors.black54),
-          //                     )),
-          //               ],
-          //             );
-          //           })
-          //       : Navigator.of(context).push(MaterialPageRoute(
-          //           builder: (context) => const DescriptionPage()));
-          // },
           child: Row(
             children: [
               const SizedBox(width: 15),
-              Icon(icon, color: Colors.white, size: 30),
+              Icon(icon, color: Colors.black, size: 30),
               const SizedBox(width: 20),
               Text(
                 title,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+                style: const TextStyle(color: Colors.black, fontSize: 20),
               )
             ],
           ),
@@ -273,7 +236,7 @@ class ImageMessage extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
-          color: const Color(0xff525355),
+          color: const Color(0xff525355).withOpacity(.1),
           borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: [
@@ -296,7 +259,7 @@ class ImageMessage extends StatelessWidget {
                 Expanded(
                   child: Text(
                     "Description: $description",
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -383,7 +346,7 @@ class ScheduleNotificationCard extends StatelessWidget {
       // height: MediaQuery.of(context).size.height / 6,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: const Color(0xff525355),
+          color: Colors.black.withOpacity(.1),
           borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: [
@@ -394,7 +357,7 @@ class ScheduleNotificationCard extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
                   "Reminder set at: $hour:$minute",
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ),
             ],
@@ -407,7 +370,7 @@ class ScheduleNotificationCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Text(
                     "Reminder Description: $description",
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
                   ),
                 ),
               ),
@@ -448,7 +411,7 @@ class NutritionDietPageCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: const Color(0xff525355),
+          color: Colors.white,
         ),
         child: Stack(
           children: [
@@ -472,6 +435,71 @@ class NutritionDietPageCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class HealthPredictionTextFieldWidget extends StatelessWidget {
+  final String title;
+  final String labelText;
+  final String hintText;
+  final TextEditingController controller;
+
+  const HealthPredictionTextFieldWidget({
+    Key? key,
+    required this.title,
+    required this.labelText,
+    required this.hintText,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      // mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: MediaQuery.of(context).size.height / 20),
+        Padding(
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width / 7.2),
+          child: Text(
+            title,
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height / 35),
+        Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.15),
+          child: TextFormField(
+            style: const TextStyle(color: Colors.black),
+            controller: controller,
+            cursorColor: Colors.black,
+            decoration: InputDecoration(
+                border: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)),
+                focusColor: Colors.black,
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)),
+                enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                labelText: labelText,
+                labelStyle: const TextStyle(color: Colors.black),
+                hintText: hintText,
+                hintStyle: const TextStyle(color: Colors.black)),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "Required";
+              }
+              return null;
+            },
+            keyboardType: TextInputType.number,
+          ),
+        ),
+      ],
     );
   }
 }

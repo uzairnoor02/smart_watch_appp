@@ -74,9 +74,9 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
     var snackBar = SnackBar(
       content: Text(
         "Notification Schedule to  $_hour:$_minute ",
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20, color: Colors.white),
       ),
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.blueAccent,
     );
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
@@ -92,7 +92,12 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      appBar: AppBar(
+        title: const Text("Set Reminder"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -105,7 +110,7 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                     const Text(
                       "Set Reminder Notification",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 25,
                           fontWeight: FontWeight.bold),
                     ),
@@ -116,22 +121,22 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                       margin: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.15),
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         controller: _hourController,
-                        cursorColor: Colors.white,
+                        cursorColor: Colors.black,
                         decoration: const InputDecoration(
                             border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
-                            focusColor: Colors.white,
+                                borderSide: BorderSide(color: Colors.black)),
+                            focusColor: Colors.black,
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.black)),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             labelText: "Set Hour",
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: TextStyle(color: Colors.black),
                             hintText: "24",
-                            hintStyle: TextStyle(color: Colors.white)),
+                            hintStyle: TextStyle(color: Colors.black)),
                         validator: (value) {
                           if (value!.trim().isEmpty) {
                             return "Required";
@@ -153,22 +158,22 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                       margin: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.15),
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         controller: _minuteController,
-                        cursorColor: Colors.white,
+                        cursorColor: Colors.black,
                         decoration: const InputDecoration(
                             border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
-                            focusColor: Colors.white,
+                                borderSide: BorderSide(color: Colors.black)),
+                            focusColor: Colors.black,
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.black)),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             labelText: "Set Minute",
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: TextStyle(color: Colors.black),
                             hintText: "60",
-                            hintStyle: TextStyle(color: Colors.white)),
+                            hintStyle: TextStyle(color: Colors.black)),
                         validator: (value) {
                           if (value!.trim().isEmpty) {
                             return "Required";
@@ -191,7 +196,7 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                           horizontal: MediaQuery.of(context).size.width * 0.15),
                       child: TextFormField(
                         controller: _descriptionController,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         maxLines: 3,
                         validator: (value) {
                           if (value!.trim().isEmpty) {
@@ -200,21 +205,21 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                             _description = value.trim().toString();
                           }
                         },
-                        cursorColor: Colors.white,
+                        cursorColor: Colors.black,
                         decoration: const InputDecoration(
                           // border: InputBorder.none,
                           border: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
+                              borderSide: BorderSide(color: Colors.black)),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
+                            borderSide: BorderSide(color: Colors.black),
                           ),
-                          focusColor: Colors.white,
-                          labelStyle: TextStyle(color: Colors.white),
+                          focusColor: Colors.black,
+                          labelStyle: TextStyle(color: Colors.black),
                           alignLabelWithHint: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.black,
                           labelText: 'Description',
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
+                              borderSide: BorderSide(color: Colors.black)),
                         ),
                       ),
                     ),
@@ -309,7 +314,7 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: const Color(0xff525355),
+                          color: Colors.blueAccent,
                         ),
                         child: const Center(
                             child: Text(
@@ -330,7 +335,7 @@ class _SetScheduleNotificationState extends State<SetScheduleNotification> {
               child: Visibility(
                   visible: _indicatorBar,
                   child: const CircularProgressIndicator(
-                    color: Colors.grey,
+                    color: Colors.blueAccent,
                   )),
             ),
           ],

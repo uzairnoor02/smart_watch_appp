@@ -24,16 +24,21 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      appBar: AppBar(
+        title: const Text("Descriptions"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const uploadDescriptionImage()));
         },
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         child: const Icon(
           Icons.add,
-          color: Color(0xff192442),
+          color: Colors.white,
         ),
       ),
       body: SafeArea(

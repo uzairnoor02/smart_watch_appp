@@ -25,11 +25,11 @@ class NutritionDietPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(title),
         centerTitle: true,
-        backgroundColor: const Color(0xff525355),
+        backgroundColor: Colors.blueAccent,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -53,13 +53,13 @@ class NutritionDietPage extends StatelessWidget {
                 margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xff525355),
+                  color: Colors.black.withOpacity(.1),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     dietPlan(num: num),
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ),

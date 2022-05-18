@@ -28,11 +28,11 @@ class Steps {
 
 class ActivitiesStep {
   ActivitiesStep({
-    this.dateTime,
-    this.value = "",
+    required this.dateTime,
+    required this.value,
   });
 
-  DateTime? dateTime;
+  DateTime dateTime;
   String value;
 
   factory ActivitiesStep.fromJson(Map<String, dynamic> json) => ActivitiesStep(
@@ -42,7 +42,7 @@ class ActivitiesStep {
 
   Map<String, dynamic> toJson() => {
         "dateTime":
-            "${dateTime!.year.toString().padLeft(4, '0')}-${dateTime!.month.toString().padLeft(2, '0')}-${dateTime!.day.toString().padLeft(2, '0')}",
+            "${dateTime.year.toString().padLeft(4, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}",
         "value": value,
       };
 }

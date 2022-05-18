@@ -18,22 +18,27 @@ class _ScheduleNotificationPageState extends State<ScheduleNotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      appBar: AppBar(
+        title: const Text("Reminders"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const SetScheduleNotification()));
         },
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         child: const Icon(
           Icons.add,
-          color: Color(0xff192442),
+          color: Colors.white,
         ),
       ),
       body: SafeArea(
         child: Column(
-          children: [
-            const ReminderStream(),
+          children: const [
+            ReminderStream(),
           ],
         ),
       ),

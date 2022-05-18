@@ -2,6 +2,7 @@ import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Component/Components.dart';
 import 'HealthStatusPage.dart';
 
 class HealthPredictionPage extends StatefulWidget {
@@ -17,16 +18,17 @@ GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 bool isSmoker = false;
 bool isDiabetes = false;
+bool isHeadache = false;
 
 class _HealthPredictionPageState extends State<HealthPredictionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Health Prediction"),
         centerTitle: true,
-        backgroundColor: const Color(0xff525355),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Form(
         key: _formKey,
@@ -51,14 +53,14 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 7),
                   child: Theme(
-                    data: Theme.of(context).copyWith(
-                        unselectedWidgetColor: const Color(0xff525355)),
+                    data: Theme.of(context)
+                        .copyWith(unselectedWidgetColor: Colors.black),
                     child: CheckboxListTile(
                       title: const Text("Smoker ?",
-                          style: TextStyle(color: Colors.white, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 14)),
                       subtitle: const Text(
-                          "If you are not than leave is section",
-                          style: TextStyle(color: Colors.white, fontSize: 12)),
+                          "If you are not than leave this section",
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       controlAffinity: ListTileControlAffinity.leading,
                       value: isSmoker,
                       onChanged: (value) {
@@ -66,7 +68,7 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                           isSmoker = value!;
                         });
                       },
-                      activeColor: const Color(0xff525355),
+                      activeColor: Colors.black,
                       checkColor: Colors.white,
                     ),
                   ),
@@ -76,14 +78,14 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 7),
                   child: Theme(
-                    data: Theme.of(context).copyWith(
-                        unselectedWidgetColor: const Color(0xff525355)),
+                    data: Theme.of(context)
+                        .copyWith(unselectedWidgetColor: Colors.black),
                     child: CheckboxListTile(
                       title: const Text("Diabetes ?",
-                          style: TextStyle(color: Colors.white, fontSize: 14)),
+                          style: TextStyle(color: Colors.black, fontSize: 14)),
                       subtitle: const Text(
-                          "If you are not suffering Diabetes than leave is section",
-                          style: TextStyle(color: Colors.white, fontSize: 12)),
+                          "If you are not suffering Diabetes than leave this section",
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
                       controlAffinity: ListTileControlAffinity.leading,
                       value: isDiabetes,
                       onChanged: (val) {
@@ -91,7 +93,32 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                           isDiabetes = val!;
                         });
                       },
-                      activeColor: const Color(0xff525355),
+                      activeColor: Colors.black,
+                      checkColor: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width / 7),
+                  child: Theme(
+                    data: Theme.of(context)
+                        .copyWith(unselectedWidgetColor: Colors.black),
+                    child: CheckboxListTile(
+                      title: const Text("Headache ?",
+                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                      subtitle: const Text(
+                          "If you are not suffering Headache than leave this section",
+                          style: TextStyle(color: Colors.black, fontSize: 12)),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: isHeadache,
+                      onChanged: (val) {
+                        setState(() {
+                          isHeadache = val!;
+                        });
+                      },
+                      activeColor: Colors.black,
                       checkColor: Colors.white,
                     ),
                   ),
@@ -180,6 +207,7 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                                       isDiabetes: isDiabetes,
                                       isSmoker: isSmoker,
                                       bpm: bpm,
+                                      isHeadache: isHeadache,
                                     )));
                       }
                     });
@@ -189,7 +217,7 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
                     width: MediaQuery.of(context).size.width * 0.7,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xff525355),
+                      color: Colors.blueAccent,
                     ),
                     child: const Center(
                         child: Text(
@@ -206,71 +234,6 @@ class _HealthPredictionPageState extends State<HealthPredictionPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class HealthPredictionTextFieldWidget extends StatelessWidget {
-  final String title;
-  final String labelText;
-  final String hintText;
-  final TextEditingController controller;
-
-  const HealthPredictionTextFieldWidget({
-    Key? key,
-    required this.title,
-    required this.labelText,
-    required this.hintText,
-    required this.controller,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: MediaQuery.of(context).size.height / 20),
-        Padding(
-          padding:
-              EdgeInsets.only(left: MediaQuery.of(context).size.width / 7.2),
-          child: Text(
-            title,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height / 35),
-        Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.15),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            controller: controller,
-            cursorColor: Colors.white,
-            decoration: InputDecoration(
-                border: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
-                focusColor: Colors.white,
-                focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                labelText: labelText,
-                labelStyle: const TextStyle(color: Colors.white),
-                hintText: hintText,
-                hintStyle: const TextStyle(color: Colors.white)),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Required";
-              }
-              return null;
-            },
-            keyboardType: TextInputType.number,
-          ),
-        ),
-      ],
     );
   }
 }

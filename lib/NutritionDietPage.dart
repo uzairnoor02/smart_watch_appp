@@ -10,11 +10,11 @@ class NutritionDietPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff192442),
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("Nutrition Diet"),
           centerTitle: true,
-          backgroundColor: const Color(0xff525355),
+          backgroundColor: Colors.blueAccent,
         ),
         body: SafeArea(
           child: SingleChildScrollView(

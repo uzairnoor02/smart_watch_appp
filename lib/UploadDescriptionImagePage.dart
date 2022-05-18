@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:smart_watch_app/LoginPage.dart';
 
 import 'Component/Components.dart';
 import 'LocalNotificationClass.dart';
@@ -104,8 +103,13 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
   Widget build(BuildContext context) {
     bool buttonDisability = false;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add Prescription"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
       key: formkey,
-      backgroundColor: const Color(0xff192442),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -116,7 +120,6 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     GestureDetector(
                       onTap: image != null
                           ? () async {}
@@ -131,7 +134,7 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                                     Expanded(
                                       child: RoundedButton(
                                         title: 'Pick from Gallery',
-                                        colour: const Color(0xff192442),
+                                        colour: Colors.blueAccent,
                                         onPressed: () {
                                           Navigator.pop(context);
                                           pickImage(ImageSource.gallery);
@@ -144,7 +147,7 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                                     Expanded(
                                       child: RoundedButton(
                                         title: 'Pick from Camera',
-                                        colour: const Color(0xff192442),
+                                        colour: Colors.blueAccent,
                                         onPressed: () {
                                           Navigator.pop(context);
                                           pickImage(ImageSource.camera);
@@ -183,23 +186,23 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     TextFormField(
                       controller: descriptionController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       maxLines: 3,
                       onChanged: (value) {
                         // updateDescription();
                         description = value.trim();
                       },
-                      cursorColor: Colors.white,
+                      cursorColor: Colors.black,
                       decoration: InputDecoration(
                           // border: InputBorder.none,
-                          labelStyle: const TextStyle(color: Colors.white),
+                          labelStyle: const TextStyle(color: Colors.black),
                           alignLabelWithHint: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.blueAccent,
                           labelText: 'Description',
                           focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
+                              borderSide: BorderSide(color: Colors.black)),
                           border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(5.0))),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
@@ -252,11 +255,11 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            color: Colors.white),
+                            color: Colors.blueAccent),
                         child: const Center(
                           child: Text(
                             "Upload Description",
-                            style: TextStyle(color: Color(0xff192442)),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -270,7 +273,7 @@ class _uploadDescriptionImageState extends State<uploadDescriptionImage> {
               child: Visibility(
                   visible: _indicatorBar,
                   child: const CircularProgressIndicator(
-                    color: Colors.grey,
+                    color: Colors.blueAccent,
                   )),
             ),
           ],

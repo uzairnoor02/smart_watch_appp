@@ -8,6 +8,7 @@ class HealthStatusPage extends StatefulWidget {
   final String bpm;
   final bool isSmoker;
   final bool isDiabetes;
+  final bool isHeadache;
   const HealthStatusPage(
       {Key? key,
       required this.intBPM,
@@ -15,7 +16,8 @@ class HealthStatusPage extends StatefulWidget {
       required this.painScale,
       required this.bpm,
       required this.isSmoker,
-      required this.isDiabetes})
+      required this.isDiabetes,
+      required this.isHeadache})
       : super(key: key);
 
   @override
@@ -53,11 +55,11 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff192442),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Health Status"),
         centerTitle: true,
-        backgroundColor: const Color(0xff525355),
+        backgroundColor: Colors.blueAccent,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -73,19 +75,19 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                   const TextSpan(
                       text: "Your BPM: ",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                   TextSpan(
                     text: widget.bpm,
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ])),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 15),
-                  child: const Divider(color: Colors.white),
+                  child: const Divider(color: Colors.black),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 RichText(
@@ -93,19 +95,19 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                   const TextSpan(
                       text: "Pain Scale: ",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                   TextSpan(
                     text: widget.painScale,
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ])),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 15),
-                  child: const Divider(color: Colors.white),
+                  child: const Divider(color: Colors.black),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
@@ -114,21 +116,21 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                   const TextSpan(
                       text: "Smoking: ",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                   TextSpan(
                     text: widget.isSmoker
                         ? "You need to prevent smoking for better health"
                         : "Non-Smoker",
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ])),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 15),
-                  child: const Divider(color: Colors.white),
+                  child: const Divider(color: Colors.black),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
@@ -137,21 +139,44 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                   const TextSpan(
                       text: "Diabetes: ",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                   TextSpan(
                     text: widget.isDiabetes
                         ? "Maintain your Diabetes level between 75 to 110 for good health"
                         : "Negative",
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ])),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 15),
-                  child: const Divider(color: Colors.white),
+                  child: const Divider(color: Colors.black),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                RichText(
+                    text: TextSpan(children: [
+                  const TextSpan(
+                      text: "Headache: ",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
+                  TextSpan(
+                    text: widget.isHeadache
+                        ? "Use Aspirin(Disprin) for instant relief during Headache"
+                        : "Negative",
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                ])),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width / 15),
+                  child: const Divider(color: Colors.black),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 RichText(
@@ -159,37 +184,37 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                   const TextSpan(
                       text: "Prediction: ",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                   TextSpan(
                     text: healthConditionMessage(
                         intBPM: widget.intBPM,
                         intPainScale: widget.intPainScale),
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   TextSpan(
                     text: bpmMessage(intBPM: widget.intBPM),
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   TextSpan(
                     text: widget.intPainScale >= 7
                         ? painMessage(intPainScale: widget.intPainScale)
                         : "\nIts normal pain be Brave",
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                   const TextSpan(
                     text: "\nVisit you doctor as soon as possible ",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ])),
                 SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 15),
-                  child: const Divider(color: Colors.white),
+                  child: const Divider(color: Colors.black),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 10),
+                SizedBox(height: MediaQuery.of(context).size.height / 30),
                 BouncingWidget(
                   onPressed: () {
                     Future.delayed(const Duration(milliseconds: 500), () {
@@ -202,7 +227,7 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xff525355),
+                        color: Colors.blueAccent,
                       ),
                       child: const Center(
                           child: Text(

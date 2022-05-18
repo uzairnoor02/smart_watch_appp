@@ -1,12 +1,11 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// import 'package:workmanager/workmanager.dart';
-
+import 'HomePage.dart';
 import 'LocalNotificationClass.dart';
-import 'LoginPage.dart';
 import 'ScheduleNotification.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -32,21 +31,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           channelDescription: channel.description,
         ),
       ));
-  // print(
-  //     "A bg message just showed up : ${message.notification!.title}\n ${message.notification!.body}");
 }
 
 Future<void> main() async {
-  // final cron = Cron();
-  // const String day = "*";
-  // const String month = "april";
-  // const String dayOfMonth = "Thursday";
-  // const String hour = "5";
-  // const String min = "5";
-  //
-  // cron.schedule(Schedule.parse("$min $hour $dayOfMonth $month $day"),
-  //     () async => {showNotification()});
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -139,7 +126,51 @@ class _MyAppState extends State<MyApp> {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: LoginPage(),
+      home: SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(const Duration(seconds: 8), () {
+      // showNotification();
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const HomePage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 60),
+          child: TextLiquidFill(
+            text: 'Smart Health Monitoring System',
+            waveColor: Colors.blueAccent,
+            boxBackgroundColor: Colors.white,
+            textStyle: const TextStyle(
+              fontSize: 40.0,
+              fontWeight: FontWeight.bold,
+            ),
+            boxHeight: 300.0,
+          ),
+        ),
+      ),
     );
   }
 }
